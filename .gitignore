@@ -1,0 +1,8 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+# Temporarily allowing .env to be committed for deployment (Note: insecure for public repos)
+.vercel

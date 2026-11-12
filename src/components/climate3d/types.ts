@@ -1,0 +1,1 @@
+export type WeatherState = 'sunny' | 'partly_cloudy' | 'cloudy' | 'overcast' | 'fog' | 'light_rain' | 'heavy_rain' | 'thunderstorm' | 'snow' | 'clear_day' | 'clear_night' | 'windy' | 'heavy_snow' | 'blizzard' | 'hail' | 'tornado' | 'sandstorm' | 'cyclone' | 'heatwave' | 'cold_wave' | 'frost' | 'aurora' | 'meteor_shower';

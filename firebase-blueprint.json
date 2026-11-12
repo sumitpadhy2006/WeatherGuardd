@@ -1,0 +1,269 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Comprehensive user profile, profession, interests, and preferences document",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "Unique Firebase Authentication UID",
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "email": {
+          "type": "string",
+          "description": "User email address"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "User display name",
+          "maxLength": 100
+        },
+        "profilePhotoUrl": {
+          "type": "string",
+          "description": "Download URL or storage reference for profile photo"
+        },
+        "phoneNumber": {
+          "type": "string",
+          "description": "Optional phone number for emergency contact",
+          "maxLength": 20
+        },
+        "dateOfBirth": {
+          "type": "string",
+          "description": "Optional ISO date of birth (YYYY-MM-DD)",
+          "maxLength": 10
+        },
+        "primaryUserType": {
+          "type": "string",
+          "description": "Primary profession or archetype category",
+          "maxLength": 50
+        },
+        "specificProfession": {
+          "type": "string",
+          "description": "Optional custom free-text profession description",
+          "maxLength": 100
+        },
+        "interests": {
+          "type": "array",
+          "description": "List of user interests that influence recommendations"
+        },
+        "defaultLocationId": {
+          "type": "string",
+          "description": "ID of default home or primary monitoring location",
+          "maxLength": 128
+        },
+        "weatherPreferences": {
+          "type": "object",
+          "description": "Meteorological unit and display preferences"
+        },
+        "notificationPreferences": {
+          "type": "object",
+          "description": "Push, in-app, email, and quiet hours notification settings"
+        },
+        "alertPreferences": {
+          "type": "object",
+          "description": "Thresholds and category toggles for weather, earth, and space alerts"
+        },
+        "astronomyPreferences": {
+          "type": "object",
+          "description": "Astronomy and celestial event observation preferences"
+        },
+        "spaceWeatherPreferences": {
+          "type": "object",
+          "description": "Space weather and aurora preferences"
+        },
+        "accessibilityPreferences": {
+          "type": "object",
+          "description": "Reduced motion, contrast, and sensory preferences"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Creation timestamp in milliseconds"
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Last updated timestamp in milliseconds"
+        },
+        "lastLoginAt": {
+          "type": "number",
+          "description": "Last authenticated session timestamp"
+        }
+      },
+      "required": ["uid", "createdAt"]
+    },
+    "SavedLocation": {
+      "title": "SavedLocation",
+      "description": "Saved atmospheric observatory or favorite monitoring location",
+      "type": "object",
+      "properties": {
+        "locationId": {
+          "type": "string",
+          "description": "Unique identifier for the location",
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "label": {
+          "type": "string",
+          "description": "Location category label (Home, College, School, Office, Farm, Village, Family, Travel, Custom)",
+          "maxLength": 50
+        },
+        "nickname": {
+          "type": "string",
+          "description": "Custom label or nickname for the location",
+          "maxLength": 80
+        },
+        "city": {
+          "type": "string",
+          "description": "City name",
+          "maxLength": 100
+        },
+        "state": {
+          "type": "string",
+          "description": "State or province name",
+          "maxLength": 100
+        },
+        "country": {
+          "type": "string",
+          "description": "Country code or name",
+          "maxLength": 100
+        },
+        "latitude": {
+          "type": "number",
+          "description": "Geographical latitude"
+        },
+        "longitude": {
+          "type": "number",
+          "description": "Geographical longitude"
+        },
+        "timezone": {
+          "type": "string",
+          "description": "IANA timezone string",
+          "maxLength": 60
+        },
+        "isDefault": {
+          "type": "boolean",
+          "description": "Whether this location is the default landing hub"
+        },
+        "alertEnabled": {
+          "type": "boolean",
+          "description": "Whether automated storm/seismic alerts are enabled for this location"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Last updated timestamp"
+        }
+      },
+      "required": ["locationId", "city", "latitude", "longitude", "createdAt"]
+    },
+    "AlertRule": {
+      "title": "AlertRule",
+      "description": "Custom user-defined environmental or seismic alert rule with distance radius and threshold",
+      "type": "object",
+      "properties": {
+        "ruleId": {
+          "type": "string",
+          "description": "Unique rule identifier",
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "name": {
+          "type": "string",
+          "description": "Rule name or description",
+          "maxLength": 100
+        },
+        "category": {
+          "type": "string",
+          "description": "Alert domain category (rain, wind, aqi, earthquake, cyclone, eclipse, meteor)",
+          "maxLength": 40
+        },
+        "locationId": {
+          "type": "string",
+          "description": "Associated saved location ID",
+          "maxLength": 128
+        },
+        "radiusKm": {
+          "type": "number",
+          "description": "Geographical trigger radius in kilometers (e.g. 50, 100, 250, 500, 1000)"
+        },
+        "thresholdValue": {
+          "type": "number",
+          "description": "Numerical threshold (e.g. rain 70%, wind 50km/h, aqi 150, quake mag 4.5)"
+        },
+        "thresholdOperator": {
+          "type": "string",
+          "description": "Operator (gte, lte, eq)",
+          "maxLength": 10
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Rule active status"
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Creation timestamp"
+        },
+        "updatedAt": {
+          "type": "number",
+          "description": "Last updated timestamp"
+        }
+      },
+      "required": ["ruleId", "category", "enabled", "createdAt"]
+    },
+    "NotificationToken": {
+      "title": "NotificationToken",
+      "description": "FCM Push notification registration token associated with authenticated device",
+      "type": "object",
+      "properties": {
+        "tokenId": {
+          "type": "string",
+          "description": "Token document ID",
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "token": {
+          "type": "string",
+          "description": "FCM web push token string",
+          "maxLength": 512
+        },
+        "platform": {
+          "type": "string",
+          "description": "Client device platform (web, mobile)",
+          "maxLength": 30
+        },
+        "userAgent": {
+          "type": "string",
+          "description": "Browser user agent summary",
+          "maxLength": 200
+        },
+        "createdAt": {
+          "type": "number",
+          "description": "Token registration timestamp"
+        },
+        "lastUsedAt": {
+          "type": "number",
+          "description": "Last token dispatch check timestamp"
+        }
+      },
+      "required": ["tokenId", "token", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{uid}": {
+      "schema": "UserProfile",
+      "description": "Private user account profile, profession, interests, and preferences"
+    },
+    "/users/{uid}/savedLocations/{locationId}": {
+      "schema": "SavedLocation",
+      "description": "User's saved planetary observatories and monitoring places"
+    },
+    "/users/{uid}/alertRules/{ruleId}": {
+      "schema": "AlertRule",
+      "description": "User's custom threshold and spatial radius alert rules"
+    },
+    "/users/{uid}/notificationTokens/{tokenId}": {
+      "schema": "NotificationToken",
+      "description": "User's active FCM device tokens for push alerts"
+    }
+  }
+}
